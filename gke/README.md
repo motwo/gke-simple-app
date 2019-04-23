@@ -1,4 +1,15 @@
-## クラスタ作成
+## Ingress
+* ingress_static
+* ingress_go
+* ingress_angular
+
+## Service, Deployment
+* web_static.yaml
+* web_go.yaml
+* web_angular.yaml
+
+## 作成手順
+### クラスタ
 ```
 // 作成
 gcloud container clusters create gke-simple-app --cluster-version=1.12.6-gke.10 \
@@ -9,12 +20,12 @@ gcloud container clusters create gke-simple-app --cluster-version=1.12.6-gke.10 
 gcloud container clusters get-credentials gke-simple-app
 ```
 
-##  API
+###  API
 ```
 kubectl apply -f api.yaml
 ```
 
-## Web
+### Web
 ```
 kubectl apply -f web_angular.yaml
 kubectl apply -f web_go.yaml
@@ -28,7 +39,7 @@ apk --no-cache add curl
 curl http://api
 ```
 
-## ingress
+### Ingress
 ```
 kubectl apply -f ingress_angular.yaml
 
@@ -38,7 +49,7 @@ kubectl apply -f ingress_go.yaml
 kubectl apply -f ingress_static.yaml
 ```
 
-## 削除
+### 削除
 ```
 gcloud container clusters resize gke-simple-app --size 0
 kubectl delete -f ingress.yaml
