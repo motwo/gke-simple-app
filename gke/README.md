@@ -7,6 +7,7 @@
 * web_static.yaml
 * web_go.yaml
 * web_angular.yaml
+* api.yaml
 
 ## 作成手順
 ### クラスタ
