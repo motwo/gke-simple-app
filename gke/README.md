@@ -48,7 +48,19 @@ kubectl apply -f ingress_angular.yaml
 ```
 
 ### クリーニング
+以下はコンソールからも簡単に操作可能
 ```
+// clusterサイズを0に変更
 gcloud container clusters resize gke-simple-app --size 0
-kubectl delete -f ingress.yaml
+
+// deployment, serviceの削除
+kubectl delete -f api.yaml
+kubectl delete -f web_static.yaml
+kubectl delete -f web_go.yaml
+kubectl delete -f web_angular.yaml
+
+// ingress削除
+kubectl delete -f ingress_static.yaml
+kubectl delete -f ingress_go.yaml
+kubectl delete -f ingress_angular.yaml
 ```
