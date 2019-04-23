@@ -1,6 +1,6 @@
 var request = new XMLHttpRequest();
 
-request.open('GET', 'http://localhost:8080', true);
+request.open('GET', 'http://api', true);
 
 request.onload = function() {
   var data = JSON.parse(this.response);
