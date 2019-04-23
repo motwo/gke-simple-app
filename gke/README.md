@@ -41,9 +41,9 @@ curl http://api
 
 ### Ingress
 ```
-kubectl apply -f ingress_angular.yaml
-kubectl apply -f ingress_go.yaml
 kubectl apply -f ingress_static.yaml
+kubectl apply -f ingress_go.yaml
+kubectl apply -f ingress_angular.yaml
 ```
 
 ### クリーニング
