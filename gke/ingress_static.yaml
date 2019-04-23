@@ -1,12 +1,13 @@
+# テスト用にapiコンテナに直接アクセスするためのIngress
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress
+  name: ingress-static
 spec:
   rules:
   - http:
       paths:
       - path: /*
         backend:
-          serviceName: web 
+          serviceName: web-static 
           servicePort: 80

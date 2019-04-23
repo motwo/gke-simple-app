@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: web-angular
   labels:
-    app: web
+    app: web-angular
 spec:
   selector:
-    app: web
+    app: web-angular
   ports:
     - name: http
       port: 80
@@ -16,22 +16,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web 
+  name: web-angular 
   labels:
-    name: web
+    name: web-angular
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: web
+      app: web-angular
   template:
     metadata:
       labels:
-        app: web
+        app: web-angular
     spec:
       containers:
-      - name: web
-        image: asia.gcr.io/gke-test-235823/web:v1
+      - name: web-angular
+        image: asia.gcr.io/gke-test-235823/web-angular:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 80
