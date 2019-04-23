@@ -49,7 +49,7 @@ kubectl apply -f ingress_go.yaml
 kubectl apply -f ingress_static.yaml
 ```
 
-### 削除
+### クリーニング
 ```
 gcloud container clusters resize gke-simple-app --size 0
 kubectl delete -f ingress.yaml
