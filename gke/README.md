@@ -31,6 +31,7 @@ kubectl apply -f api.yaml
 kubectl apply -f web_static.yaml
 kubectl apply -f web_go.yaml
 kubectl apply -f web_angular.yaml
+kubectl apply -f web_nuxt.yaml
 
 // webコンテナに接続
 kubectl exec -it web-694bd65655-k5kq9 sh -c web
@@ -45,6 +46,7 @@ curl http://api
 kubectl apply -f ingress_static.yaml
 kubectl apply -f ingress_go.yaml
 kubectl apply -f ingress_angular.yaml
+kubectl apply -f ingress_nuxt.yaml
 ```
 
 ### クリーニング
