@@ -1,0 +1,13 @@
+# テスト用にapiコンテナに直接アクセスするためのIngress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-angular-ssr
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: web-angular-ssr
+          servicePort: 80

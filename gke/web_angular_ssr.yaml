@@ -1,0 +1,116 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-angular-ssr
+  labels:
+    app: web-angular-ssr
+spec:
+  selector:
+    app: web-angular-ssr
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4000
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-angular-ssr 
+  labels:
+    name: web-angular-ssr
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-angular-ssr
+  template:
+    metadata:
+      labels:
+        app: web-angular-ssr
+    spec:
+      containers:
+      - name: web-angular-ssr
+        image: asia.gcr.io/gke-test-235823/web-angular-ssr:v2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4000
+
+
+
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: web-angular-ssr
+#   labels:
+#     app: web-angular-ssr
+# spec:
+#   selector:
+#     app: web-angular-ssr
+#   ports:
+#     - name: http
+#       port: 80
+#   type: NodePort
+
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: web-angular-ssr 
+#   labels:
+#     name: web-angular-ssr
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: web-angular-ssr
+#   template:
+#     metadata:
+#       labels:
+#         app: web-angular-ssr
+#     spec:
+#       # volumes:
+#       # - name: assets
+#       #   emptyDir: {}
+#       containers:
+#       - name: nginx
+#         image: gihyodocker/nginx-nuxt:latest
+#         imagePullPolicy: Always
+#         ports:
+#         - containerPort: 80
+#         env:
+#         - name: WORKER_PROCESSES
+#           value: "2"
+#         - name: WORKER_CONNECTIONS
+#           value: "1024"
+#         - name: LOG_STDOUT
+#           value: "true"
+#         - name: BACKEND_HOST
+#           value: "localhost:3000"
+#         volumeMounts:
+#         - mountPath: /var/www/_nuxt
+#           name: assets
+
+#       - name: web
+#         image: gihyodocker/web-angular-ssr:latest
+#         imagePullPolicy: Always
+#         lifecycle:
+#           postStart:
+#             exec:
+#               command:
+#               - cp
+#               - -R
+#               - /web-angular-ssr/.nuxt/dist
+#               - /
+#         ports:
+#         - containerPort: 3000 
+#         env:
+#         - name: TODO_API_URL
+#           value: http://todoapi
+#         volumeMounts:
+#         - mountPath: /dist
+#           name: assets 
