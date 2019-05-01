@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-nuxt
+  labels:
+    app: web-nuxt
+spec:
+  selector:
+    app: web-nuxt
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-nuxt 
+  labels:
+    name: web-nuxt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-nuxt
+  template:
+    metadata:
+      labels:
+        app: web-nuxt
+    spec:
+      containers:
+      - name: web-nuxt
+        image: asia.gcr.io/gke-test-235823/web-nuxt:v2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+
